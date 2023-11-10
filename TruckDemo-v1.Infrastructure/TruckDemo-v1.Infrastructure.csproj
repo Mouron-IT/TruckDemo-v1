@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TruckDemo-v1.Domain\TruckDemo-v1.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
