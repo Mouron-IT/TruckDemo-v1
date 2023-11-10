@@ -21,6 +21,7 @@ namespace TruckDemo_v1.Domain.Entities
         public string Content { get; set; }
         public Guid SectionId { get; set; }
         public int Order { get; set; }
+        public string? GameCode { get; set; }
         public Section Section { get; set; } = null!;
     }
 }
