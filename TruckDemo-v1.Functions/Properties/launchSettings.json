@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "TruckDemo_v1.Functions": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7133",
+      "launchBrowser": false
+    }
+  }
+}
