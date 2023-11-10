@@ -1,6 +1,6 @@
 ﻿namespace TruckDemo_v1.Infrastructure
 {
-    public class Class1
+    public class DependencyInyection
     {
 
     }
