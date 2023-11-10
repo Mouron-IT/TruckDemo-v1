@@ -18,7 +18,7 @@ namespace TruckDemo_v1.Infraestructure.SqlServer
 
 
             var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../TruckDemo.Function"))
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../TruckDemo-v1.Functions"))
                 .AddEnvironmentVariables()
                 .AddJsonFile($"local.settings.json", true);
 
@@ -34,7 +34,7 @@ namespace TruckDemo_v1.Infraestructure.SqlServer
                 connectionString = configuration["Values:SqlServerConnectionString"];
             }
 
-            builder.UseSqlServer(connectionString!, o => o.MigrationsAssembly("TruckDemo-v1.Infraestructure.SqlServer"));
+            builder.UseSqlServer(connectionString!, o => o.MigrationsAssembly(typeof(DesignTimeDbContextFactory).Assembly.GetName().Name));
 
             return new TruckDemoContext(builder.Options);
         }
