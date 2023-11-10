@@ -14,6 +14,8 @@ namespace TruckDemo_v1.Domain.Entities
             Content = content;
             SectionId = sectionId;
             Order = order;
+            UserLessons = new HashSet<UserLesson>();
+
         }
 
         public Guid Id { get; set; }
@@ -23,5 +25,8 @@ namespace TruckDemo_v1.Domain.Entities
         public int Order { get; set; }
         public string? GameCode { get; set; }
         public Section Section { get; set; } = null!;
+        public ICollection<UserLesson> UserLessons { get; set; }
+
+
     }
 }

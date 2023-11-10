@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TruckDemo_v1.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using TruckDemo_v1.Infrastructure.Data;
 namespace TruckDemo_v1.Infraestructure.SqlServer.Migrations
 {
     [DbContext(typeof(TruckDemoContext))]
-    partial class TruckDemoContextModelSnapshot : ModelSnapshot
+    [Migration("20231110161439_AddUserOculusCodeAndUserLessons")]
+    partial class AddUserOculusCodeAndUserLessons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

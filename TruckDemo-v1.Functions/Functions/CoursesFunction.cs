@@ -25,14 +25,14 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("GetCourses")]
-        public async Task<HttpResponseData> GetCourses([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "course")] HttpRequestData req)
+        public async Task<HttpResponseData> GetCourses([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "courses")] HttpRequestData req)
         {
             var request = new GetCoursesRequest();
             return await _mediator.Send(request).ToResponseData(req);
         }
 
         [Function("GetCourseById")]
-        public async Task<HttpResponseData> GetCourseById([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "course/id")] HttpRequestData req)
+        public async Task<HttpResponseData> GetCourseById([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "course")] HttpRequestData req)
         {
             string id = req.Query["id"];
 

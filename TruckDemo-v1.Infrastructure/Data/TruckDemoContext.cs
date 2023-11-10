@@ -30,6 +30,8 @@ namespace TruckDemo_v1.Infrastructure.Data
         public DbSet<Lesson> Lessons => Set<Lesson>();
 
         public DbSet<Section> Sections => Set<Section>();
+        public DbSet<UserOculusCode> UserOculusCodes => Set<UserOculusCode>();
+        public DbSet<UserLesson> UserLessons => Set<UserLesson>();
 
 
 
@@ -51,6 +53,21 @@ namespace TruckDemo_v1.Infrastructure.Data
             });
 
             modelBuilder.Entity<Lesson>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.HasMany(s => s.UserLessons).WithOne(l => l.Lesson).HasForeignKey(l => l.LessonId);
+
+
+            });
+
+
+            modelBuilder.Entity<UserOculusCode>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+            });
+
+            modelBuilder.Entity<UserLesson>(entity =>
             {
                 entity.HasKey(e => e.Id);
             });

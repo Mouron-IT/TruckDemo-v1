@@ -35,7 +35,8 @@ namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySection
                 x.Title,
                 x.Content,
                 x.SectionId,
-                x.Order)
+                x.Order,
+                x.GameCode)
                 ).ToList();
 
             if (!allLessons.Any() || allLessons == null) {

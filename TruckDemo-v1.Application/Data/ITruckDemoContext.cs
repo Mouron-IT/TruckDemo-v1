@@ -21,6 +21,8 @@ namespace TruckDemo_v1.Application.Data
         DbSet<Lesson> Lessons { get; }
 
         DbSet<Section> Sections { get; }
+        DbSet<UserOculusCode> UserOculusCodes { get; }
+        DbSet<UserLesson> UserLessons { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

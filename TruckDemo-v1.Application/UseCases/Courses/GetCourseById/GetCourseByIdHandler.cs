@@ -40,25 +40,33 @@ namespace TruckDemo_v1.Application.UseCases.Courses.GetCourseById
                 x.Title,
                 x.Content,
                 x.CourseId,
-                x.Order)).ToList();
+                x.Order,
 
-            var allLessons = Course.Sections.SelectMany(s => s.Lessons.Select(x => new LessonDTO(
-                x.Id,
-                x.Title,
-                x.Content,
-                x.SectionId,
-                x.Order))
-                ).ToList();
+                x.Lessons.Select(l => new LessonDTO(
+                l.Id,
+                l.Title,
+                "",
+                l.SectionId,
+                l.Order,
+                l.GameCode))
+
+                )).ToList();
+
+            //var allLessons = Course.Sections.SelectMany(s => s.Lessons.Select(x => new LessonDTO(
+            //    x.Id,
+            //    x.Title,
+            //    x.Content,
+            //    x.SectionId,
+            //    x.Order))
+            //    ).ToList();
 
             return new GetCourseByIdResponse(Course.Id,
                 Course.Title,
                 Course.Content,
                 Course.CreatedAt,
                 Course.Subtitle,
-                Course.LastUpdatedAt,
-                Course.PublishedAt,
-                seccions,
-                allLessons
+
+                seccions
                 );
         }
     }

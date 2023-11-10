@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using TruckDemo_v1.Application.DTO.Section;
+
 namespace TruckDemo_v1.Application.DTO.Courses
 {
     public record CourseDTO(Guid CourseId,
@@ -11,7 +13,6 @@ namespace TruckDemo_v1.Application.DTO.Courses
         string Content,
         DateTime CreatedAt,
         string? Subtitle,
-        DateTime? ModifiedAt,
-        DateTime? PublishAt);
+        IEnumerable<SectionDTO> Sections);
 
 }

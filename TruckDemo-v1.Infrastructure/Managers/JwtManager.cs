@@ -26,9 +26,6 @@ namespace TruckDemo_v1.Infraestructure.Managers
         public string GenerateJwt(ApplicationUser user, IEnumerable<Claim> claims)
         {
 
-            var key = Encoding.ASCII.GetBytes
-            (/*_securityOptions.SecretKey*/ "Equipo13");
-            
 
             List<Claim> tokenClaims = new(claims)
             {
@@ -36,23 +33,19 @@ namespace TruckDemo_v1.Infraestructure.Managers
                 new(JwtClaimTypes.Subject, user.Id.ToString())
             };
 
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(tokenClaims),
-                Expires = DateTime.UtcNow.AddDays(7),
-                //Issuer = _securityOptions.Issuer,
-                Issuer = "Equipo13 ",
-                //Audience = _securityOptions.Audience,
-                Audience = "Backend",
-                SigningCredentials = new SigningCredentials
-                (new SymmetricSecurityKey(key),
-                SecurityAlgorithms.HmacSha256)
-            };
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var jwtToken = tokenHandler.WriteToken(token);
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("S3cr3t_K3y!.123_S3cr3t_K3y!.123.123_S3cr3t_K3y!.123"));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            var tokenDescriptor = new JwtSecurityToken(
+                issuer: "truck-backend",
+                audience: "backend",
+                claims: tokenClaims,
+                expires: DateTime.Now.AddMinutes(720),
+                signingCredentials: credentials);
 
-            return jwtToken;
+            var jwt = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
+
+
+            return jwt;
         }
 
     }

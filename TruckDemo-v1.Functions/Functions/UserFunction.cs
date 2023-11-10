@@ -9,8 +9,10 @@ using TruckDemo.Function.Middlewere;
 using TruckDemo_v1.Application.UseCases.Users.ApplyRoles;
 using TruckDemo_v1.Application.UseCases.Users.CreateDefaultUser;
 using TruckDemo_v1.Application.UseCases.Users.CreateUser;
+using TruckDemo_v1.Application.UseCases.Users.GenerateOculusCode;
 using TruckDemo_v1.Application.UseCases.Users.GetAllUsers;
 using TruckDemo_v1.Application.UseCases.Users.Login;
+using TruckDemo_v1.Application.UseCases.Users.LoginOculus;
 
 namespace TruckDemo.Function.Functions
 {
@@ -30,6 +32,13 @@ namespace TruckDemo.Function.Functions
             return await _mediator.Send(request!).ToResponseData(req);
         }
 
+        [Function("LoginOculus")]
+        public async Task<HttpResponseData> LoginOculus([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "user/login-oculus")] HttpRequestData req)
+        {
+            var request = await req.ReadFromJsonAsync<LoginOculusRequest>();
+            return await _mediator.Send(request!).ToResponseData(req);
+        }
+
         [Function("CreateDefaultUser")]
         public async Task<HttpResponseData> CreateDefaultUser([HttpTrigger(AuthorizationLevel.Anonymous,"post",Route = "user/default")] HttpRequestData req)
         {
@@ -42,6 +51,14 @@ namespace TruckDemo.Function.Functions
         public async Task<HttpResponseData> CreateUser([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route ="user")] HttpRequestData req)
         {
             var request = await req.ReadFromJsonAsync<CreateUserRequest>();
+            return await _mediator.Send(request!).ToResponseData(req);
+        }
+
+        [Function("GenerateOculusCode")]
+        [AuthentificationMiddlewere("admin")]
+        public async Task<HttpResponseData> GenerateOculusCode([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "generate-oculus-code")] HttpRequestData req)
+        {
+            var request = await req.ReadFromJsonAsync<GenerateOculusCodeRequest>();
             return await _mediator.Send(request!).ToResponseData(req);
         }
 

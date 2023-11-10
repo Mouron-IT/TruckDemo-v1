@@ -14,8 +14,5 @@ namespace TruckDemo_v1.Application.UseCases.Courses.GetCourseById
         string Content,
         DateTime CreatedAt,
         string? Subtitle,
-        DateTime? ModifiedAt,
-        DateTime? PublishAt,
-        IEnumerable<SectionDTO>Sections,
-        IEnumerable<LessonDTO> Lessons);
+        IEnumerable<SectionDTO>Sections);
 }

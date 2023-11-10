@@ -10,5 +10,6 @@ namespace TruckDemo_v1.Application.DTO.Lesson
         string Title,
         string Content,
         Guid SectionId,
-        int Order);
+        int Order,
+        string? GameCode);
 }
