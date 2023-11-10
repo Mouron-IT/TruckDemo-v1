@@ -5,6 +5,8 @@ using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using TruckDemo.Function.Extensions;
 using TruckDemo.Function.Middlewere;
+
+using TruckDemo_v1.Application.UseCases.Assistants.Question;
 using TruckDemo_v1.Application.UseCases.Courses.CreateCourse;
 using TruckDemo_v1.Application.UseCases.Courses.DeleteCourse;
 using TruckDemo_v1.Application.UseCases.Courses.GetCourseById;
@@ -21,7 +23,7 @@ namespace TruckDemo.Function.Functions
 
         public CoursesFunction(IMediator mediator)
         {
-            _mediator =mediator;
+            _mediator = mediator;
         }
 
         [Function("GetCourses")]
@@ -69,5 +71,14 @@ namespace TruckDemo.Function.Functions
             return await _mediator.Send(request!).ToResponseData(req);
         }
 
+        [Function("BotQuestion")]
+        [AuthentificationMiddlewere("Admin")]
+        public async Task<HttpResponseData> BotQuestion([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "question")] HttpRequestData req)
+        {
+
+            var request = await req.ReadFromJsonAsync<QuestionRequest>();
+            return await _mediator.Send(request!).ToResponseData(req);
+
+        }
     }
 }
